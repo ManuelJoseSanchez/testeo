@@ -25,7 +25,7 @@ const UserController = (axios) => ({
     deleteUser: async (req, res) => {
         const { id } = req.params;
         const code = await deleteUserServices(id, axios);
-        res.status(code);
+        res.sendStatus(code);
     }
 
 });

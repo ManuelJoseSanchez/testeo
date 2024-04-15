@@ -79,6 +79,34 @@ describe("Endpoints", () => {
             });
         });
 
+        describe("delete", () => { 
+            it('delete a resource', async () => {
+                const req = {
+                    params: {
+                        id: 54
+                    }
+                }
+
+                const res = {
+                    sendStatus: jest.fn()
+                }
+
+                const axios = {
+                    delete: jest.fn()
+                }
+
+                await UserController(axios).deleteUser(req, res);
+
+                expect(axios.delete.mock.calls).toEqual([
+                    [`https://jsonplaceholder.typicode.com/users/54`]
+                ]);
+
+                expect(res.sendStatus.mock.calls).toEqual([
+                    [204]
+                ]);
+
+            });
+        })
     });
 
 });
